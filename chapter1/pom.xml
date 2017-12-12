@@ -22,5 +22,33 @@
   		<scope>provided</scope>
   	</dependency>
   	
+  	<!-- log4j -->
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-log4j12</artifactId>
+  		<version>1.7.7</version>
+  	</dependency>
+  	
+  	<!-- mysql -->
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>5.1.33</version>
+  		<scope>runtime</scope>
+  	</dependency>
+  	
+  	<!-- Apache Commons Lang -->
+  	<dependency>
+  		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-lang3</artifactId>
+  		<version>3.1</version>
+  	</dependency>
+  	
+  	<!-- Apache Commons Collections -->
+  	<dependency>
+  		<groupId>org.apache.commons</groupId>
+  		<artifactId>commons-collections4</artifactId>
+  		<version>4.0</version>
+  	</dependency>
   </dependencies>
 </project>
