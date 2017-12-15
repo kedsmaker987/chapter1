@@ -1,9 +1,20 @@
 package org.smart4j.chapter1.service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.smart4j.chapter1.helper.DatabaseHelper;
 import org.smart4j.chapter1.model.Customer;
+import org.smart4j.chapter1.util.PropsUtil;
 
 /**
  * 提供客户信息
@@ -11,6 +22,9 @@ import org.smart4j.chapter1.model.Customer;
  *
  */
 public class CustomerService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(CustomerService.class);
+	
 
 	/**
 	 * 获取客户列表
@@ -19,8 +33,8 @@ public class CustomerService {
 	 * @return
 	 */
 	public List<Customer> getCustomerList() {
-		// TODU
-		return null;
+		String sql = "select * from customer";
+		return DatabaseHelper.queryEntityList(Customer.class, sql);
 	}
 
 	/**
@@ -30,9 +44,8 @@ public class CustomerService {
 	 * @return
 	 */
 	public Customer getCusomer(long id) {
-		// TODO
-
-		return null;
+		String sql = "select * from customer where id = ?";
+		return DatabaseHelper.queryEntity(Customer.class, sql, id);
 	}
 
 	/**
@@ -42,22 +55,16 @@ public class CustomerService {
 	 * @return
 	 */
 	public boolean createCustomer(Map<String, Object> fieldMap) {
-		// TODO
-
-		return false;
+		return DatabaseHelper.insertEntity(Customer.class, fieldMap);
 	}
 	
 	
 	public boolean updateCustomer(long id,Map<String,Object> fieldMap){
-		// TODO
-		
-		return false;
+		return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
 	}
 
 	public boolean deleteCustomer(long id) {
-
-		// TODO
-		return false;
+		return DatabaseHelper.deleteEntity(Customer.class, id);
 	}
 
 }
