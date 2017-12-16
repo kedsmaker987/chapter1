@@ -1,5 +1,8 @@
 package org.smart4j.chapter1.helper;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -225,6 +228,24 @@ public final class DatabaseHelper {
 	public static <T> boolean deleteEntity(Class<T> entityClass,long id){
 		String sql = "delete from "+ getTabName(entityClass)+ " where id = ?";
 		return executeUpdate(sql, id) == 1;
+	}
+	
+	/**
+	 * 执行 sql 文件
+	 * @param filePath
+	 */
+	public static void executeSqlFile(String filePath){
+		InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		try{
+			String sql;
+			while((sql=reader.readLine())!=null){
+				executeUpdate(sql);
+			}
+		}catch(Exception e){
+			logger.error("execute sql file failure",e);
+			throw new RuntimeException(e);
+		}
 	}
 	
 	
